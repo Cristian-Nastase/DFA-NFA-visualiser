@@ -23,7 +23,6 @@ function readData(error, data) {
         {
             states.add(elem);
         });
-
     if(!states.size)
         throw new Error(`No states entered`);
 
@@ -77,7 +76,7 @@ function readData(error, data) {
 
 function DFA()
 {
-    const inputText = readline.question(`Introdu un sir de caractere format din "1" si "0": `);
+    const inputText = readline.question(`Enter a string: `);
     const input = inputText.split("");
     
     let currentState = startState;
