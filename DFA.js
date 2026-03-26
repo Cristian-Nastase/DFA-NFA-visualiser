@@ -113,7 +113,7 @@ function DFA()
 }
 
 try {
-    fs.readFile("date.in", "utf-8", (error, data) => (readData(error, data)));
+    fs.readFile("dateDFA.in", "utf-8", (error, data) => (readData(error, data)));
 }
 catch(error) {
     console.error(error);

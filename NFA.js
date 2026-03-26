@@ -87,6 +87,7 @@ function NFA() {
     }
 
     function recursiveDFA(currentIndex, currentState) {
+
         if(currentIndex === input.length) {
             if(finalStates.has(currentState))
                 return true;
@@ -94,10 +95,11 @@ function NFA() {
             return false;
         }
 
-        const possibleWays = map.get(currentState)[input[currentIndex]];
+        const mapState = map.get(currentState) || {};
+        const possibleWays = mapState[input[currentIndex]];
+        console.log(possibleWays);
 
         if(possibleWays && typeof possibleWays === "object") {
-    
             if(possibleWays.includes(input[currentIndex]))
                 return false;
 
@@ -119,7 +121,7 @@ function NFA() {
 }
 
 try {
-    fs.readFile("date.in", "utf-8", (error, data) => (readData(error, data)));
+    fs.readFile("dateNFA.in", "utf-8", (error, data) => (readData(error, data)));
 }
 catch (error) {
     console.error(error);

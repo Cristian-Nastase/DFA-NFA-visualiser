@@ -41,7 +41,6 @@ function readData(error, data) {
         const line = lines[i++].split(";");
 
         if(line == '') {
-            console.log(line);
             continue;
         }
 
@@ -145,7 +144,7 @@ function lambdaNFA() {
 }
 
 try {
-    fs.readFile("date.in", "utf-8", (error, data) => (readData(error, data)));
+    fs.readFile("dateLambda.in", "utf-8", (error, data) => (readData(error, data)));
 }
 catch(error) {
     console.error(error);
