@@ -97,7 +97,6 @@ function NFA() {
 
         const mapState = map.get(currentState) || {};
         const possibleWays = mapState[input[currentIndex]];
-        console.log(possibleWays);
 
         if(possibleWays && typeof possibleWays === "object") {
             if(possibleWays.includes(input[currentIndex]))

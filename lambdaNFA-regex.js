@@ -127,10 +127,10 @@ function concat(r1, r2) {
     if (!r1 || !r2) return null;
     if (r1 === 'λ') return r2;
     if (r2 === 'λ') return r1;
-    return `${wrapIfNeeded(r1)}${wrapIfNeeded(r2)}`;
+    return `${wrap(r1)}${wrap(r2)}`;
 }
 
-function wrapIfNeeded(r) {
+function wrap(r) {
     if (!r) return r;
     let depth = 0;
     for (const c of r) {
@@ -180,8 +180,8 @@ function nfaToRegex() {
 
         for (const sym of alfabet) {
             const targets = toArray(trans[sym]);
-            for (const rawTarget of targets) {
-                const closure = lambdaClosure(new Set([rawTarget]));
+            for (const target of targets) {
+                const closure = lambdaClosure(new Set([target]));
                 for (const to of closure) {
                     const cur = getEdge(gnfa, from, to);
                     setEdge(gnfa, from, to, union(cur, sym));
@@ -202,14 +202,13 @@ function nfaToRegex() {
         setEdge(gnfa, f, newAccept, union(cur, lambda));
     }
 
-    const toEliminate = [...states];
-    for (const elim of toEliminate) {
+    for (const elim of states) {
         eliminateState(gnfa, gnfaStates, elim);
         gnfaStates.splice(gnfaStates.indexOf(elim), 1);
     }
 
     const result = getEdge(gnfa, newStart, newAccept);
-    return result || '∅';
+    return result || 'Regex is empty';
 }
 
 try {
