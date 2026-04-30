@@ -89,23 +89,6 @@ function toArray(val) {
     return [val];
 }
 
-function lambdaClosure(stateSet) {
-    const closure = new Set(stateSet);
-    const stack = [...stateSet];
-    while (stack.length) {
-        const s = stack.pop();
-        const trans = map.get(s) || {};
-        const targets = toArray(trans[lambda]);
-        for (const t of targets) {
-            if (!closure.has(t)) {
-                closure.add(t);
-                stack.push(t);
-            }
-        }
-    }
-    return closure;
-}
-
 function getEdge(gnfa, from, to) {
     return (gnfa[from] && gnfa[from][to] !== undefined) ? gnfa[from][to] : null;
 }
@@ -139,6 +122,23 @@ function wrap(r) {
         else if (c === '|' && depth === 0) return `(${r})`;
     }
     return r;
+}
+
+function lambdaClosure(stateSet) {
+    const closure = new Set(stateSet);
+    const stack = [...stateSet];
+    while (stack.length) {
+        const s = stack.pop();
+        const trans = map.get(s) || {};
+        const targets = toArray(trans[lambda]);
+        for (const t of targets) {
+            if (!closure.has(t)) {
+                closure.add(t);
+                stack.push(t);
+            }
+        }
+    }
+    return closure;
 }
 
 function eliminateState(gnfa, gnfaStates, elim) {
