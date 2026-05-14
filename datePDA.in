@@ -1,0 +1,9 @@
+q0 q1 q2
+a b
+Z A
+a,Z-q0,AZ;a,A-q0,AA;b,A-q1,eps
+b,A-q1,eps;eps,Z-q2,Z
+-
+q0
+Z
+q2
