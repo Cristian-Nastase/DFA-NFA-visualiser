@@ -1,8 +1,8 @@
 q0 q1 q2
 a b
-Z A
-a,Z-q0,AZ;a,A-q0,AA;b,A-q1,eps
-b,A-q1,eps;eps,Z-q2,Z
+A B Z
+a,Z-q0,AZ;b,Z-q0,BZ;a,A-q0,AA;b,A-q0,BA;a,B-q0,AB;b,B-q0,BB;a,A-q1,eps;b,B-q1,eps
+a,A-q1,eps;b,B-q1,eps;eps,Z-q2,eps;
 -
 q0
 Z
